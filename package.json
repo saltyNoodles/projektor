@@ -1,12 +1,27 @@
 {
-  "name": "projektor",
-  "version": "0.1.0",
+  "name": "Projektor",
+  "author": "Derrick Cudd",
   "private": true,
+  "build": {
+    "appId": "com.derrickcudd.projektor",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "version": "0.1.0",
   "dependencies": {
+    "@blueprintjs/core": "^3.7.0",
     "electron": "^3.0.3",
     "react": "^16.5.2",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-json-view": "^1.19.1",
+    "react-scripts": "2.0.4",
+    "styled-components": "^3.4.10"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -14,10 +29,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "electron-watch": "npx nodemon --exec yarn electron --watch src/services/",
+    "electron-watch": "npx nodemon --exec yarn electron --watch public/services/",
     "dev": "yarn start && yarn electron-watch"
   },
-  "main": "src/services/main.js",
+  "main": "public/services/main.js",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -26,5 +41,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "electron-react-devtools": "^0.5.3"
+  }
 }

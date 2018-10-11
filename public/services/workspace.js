@@ -11,25 +11,42 @@ class Workspace {
     };
 
     this.openWorkspace = this.openWorkspace.bind(this);
+    this.sendData = this.sendData.bind(this);
+    this.send = this.send.bind(this);
   }
 
   // Open a new workspace folder and load the projects
   openWorkspace() {
+    // Show the open dialog
     const folders = dialog.showOpenDialog(this.mainWindow, {
       properties: ['openDirectory']
     });
 
+    // If no folder is selected, return and do nothing.
     if (!folders) return;
 
+    // Tell the renderer that we're loading the information
+    this.send('loading', true);
+
+    // Get the first selected folder
+    // @TODO: Allow for multiple folders to be selected
     const workingDirectory = folders[0];
     console.log(workingDirectory);
 
+    // Get all of the projects from the working directory
     const projects = this.getProjects(workingDirectory);
+
+    // Add the projects and any relevent information to the data object
     this.data.projects = projects.map(path => ({
       path,
       package: this.getPackageInfo(path)
     }));
-    console.log(this.data.projects);
+
+    // Send the data to the renderer
+    this.sendData();
+
+    // Tell the renderer we are no longer loading
+    this.send('loading', false);
   }
 
   // Check if a path is a directory
@@ -60,6 +77,16 @@ class Workspace {
       .filter(this.isDirectory)
       .filter(this.isNodeProject);
     return projects;
+  }
+
+  // Just a wrapper over webContents.send();
+  send(e, data) {
+    this.mainWindow.webContents.send(e, data);
+  }
+
+  // Send data to the renderer
+  sendData() {
+    this.send('data', this.data);
   }
 }
 

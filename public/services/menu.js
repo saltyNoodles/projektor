@@ -15,9 +15,11 @@ const CreateTemplate = mainWindow => {
           }
         },
         { label: 'New Project', accelerator: 'CmdOrCtrl+N' },
-        { label: 'Add Category' }
+        { label: 'Add Category' },
+        { role: 'toggledevtools' }
       ]
     },
+
     {
       label: 'Edit',
       submenu: [
@@ -60,6 +62,20 @@ const CreateTemplate = mainWindow => {
           }
         }
       ]
+    },
+    {
+      label: 'Dev',
+      submenu: [
+        { role: 'reload' },
+        { role: 'forcereload' },
+        { role: 'toggledevtools' },
+        { type: 'separator' },
+        { role: 'resetzoom' },
+        { role: 'zoomin' },
+        { role: 'zoomout' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }
+      ]
     }
   ];
 
@@ -80,7 +96,7 @@ const CreateTemplate = mainWindow => {
     });
 
     // Edit menu
-    template[1].submenu.push(
+    template[2].submenu.push(
       { type: 'separator' },
       {
         label: 'Speech',
@@ -89,7 +105,7 @@ const CreateTemplate = mainWindow => {
     );
 
     // Window menu
-    template[3].submenu = [
+    template[4].submenu = [
       { role: 'close' },
       { role: 'minimize' },
       { role: 'zoom' },
