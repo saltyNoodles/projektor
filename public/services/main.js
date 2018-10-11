@@ -3,7 +3,7 @@ const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
 const CreateTemplate = require('./menu');
-
+const registerEvents = require('./events');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -33,6 +33,8 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  registerEvents();
 }
 
 // This method will be called when Electron has finished

@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Popover, Tooltip, Position, ButtonGroup, Menu, MenuItem } from '@blueprintjs/core';
 
+const { ipcRenderer } = window.require('electron');
+
 const ProjectCard = ({ project }) => {
   const { name, description, scripts } = project.package;
 
@@ -10,11 +12,23 @@ const ProjectCard = ({ project }) => {
       <ProjectCardHeader>
         <h1>{name}</h1>
       </ProjectCardHeader>
-      <p>{description}</p>
+      <div className="cardBody">
+        <p>{description}</p>
+        <div>
+          <pre>{project.path}</pre>
+        </div>
+      </div>
 
       {/* Control Buttons */}
       <ControlButtonGroup fill>
-        <FunctionButton fill label="Open in Editor" icon="code" />
+        <FunctionButton
+          fill
+          label="Open in Editor"
+          icon="code"
+          onClick={() => {
+            ipcRenderer.send('open-editor', project);
+          }}
+        />
         <FunctionButton label="Open in Terminal!" icon="console" />
         <FunctionButton label="Open in Finder" icon="folder-shared-open" />
         <Popover content={<ScriptsMenu scripts={scripts} />} position={Position.BOTTOM}>
@@ -49,7 +63,7 @@ const ProjectCardContainer = styled.div`
     font-size: 1.8em;
     text-align: center;
   }
-  p {
+  .cardBody {
     padding: 10px;
     color: #343434;
   }
