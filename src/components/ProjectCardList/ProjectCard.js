@@ -52,7 +52,7 @@ const ProjectCard = ({ project }) => {
 export { ProjectCard };
 
 const ProjectCardContainer = styled.div`
-  height: 200px;
+  height: 300px;
   overflow: scroll;
   background: #dedede;
   color: #dedede;
@@ -65,11 +65,12 @@ const ProjectCardContainer = styled.div`
   grid-template-rows: auto 1fr 50px;
   h1 {
     user-select: none;
-    font-weight: normal;
+    font-weight: bolder;
     padding: 0px;
     margin: 0px;
-    font-size: 1.8em;
-    text-align: center;
+    font-size: 2em;
+    text-align: left;
+    color: #dedede;
   }
   .cardBody {
     padding: 10px;
