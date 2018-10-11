@@ -29,8 +29,16 @@ const ProjectCard = ({ project }) => {
             ipcRenderer.send('open-editor', project);
           }}
         />
-        <FunctionButton label="Open in Terminal!" icon="console" />
-        <FunctionButton label="Open in Finder" icon="folder-shared-open" />
+        <FunctionButton
+          label="Open in Terminal!"
+          icon="console"
+          onClick={() => ipcRenderer.send('open-terminal', project)}
+        />
+        <FunctionButton
+          label="Open in Finder"
+          icon="folder-shared-open"
+          onClick={() => ipcRenderer.send('open-in-finder', project)}
+        />
         <Popover content={<ScriptsMenu scripts={scripts} />} position={Position.BOTTOM}>
           <Button minimal disabled={!scripts} icon="function" rightIcon="caret-down">
             Scripts
