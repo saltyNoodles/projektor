@@ -37,6 +37,7 @@ const registerEvents = () => {
   });
 };
 
+// @TODO Move into a separate file
 const osascript = script => {
   exec(`osascript -e '${script}'`, (error, stdout, stderr) => {
     if (error || stderr) {
