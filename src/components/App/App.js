@@ -34,7 +34,7 @@ class App extends Component {
     } = this.state;
     return (
       <>
-        <TitleBar />
+        <TitleBar>Projektor</TitleBar>
         <Layout className="App bp3-dark">
           <Sidebar projects={projects} />
           <MainArea>
@@ -60,7 +60,7 @@ const MainArea = styled.div`
   width: 100%;
   overflow: scroll;
   padding: 10px;
-  background: #222;
+  background: #888;
   color: #dedede;
 `;
 
@@ -74,4 +74,7 @@ const TitleBar = styled.div`
   -webkit-app-region: drag;
   z-index: 100;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  color: #dedede;
+  padding: 2px;
+  text-align: center;
 `;
