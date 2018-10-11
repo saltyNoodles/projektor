@@ -21,7 +21,7 @@ const ProjectCardList = ({ projects = [], loading = false }) => {
 
 const CardContainer = styled.div`
   display: grid;
-  grid-gap: 15px;
+  grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 1fr;
   margin: 30px;

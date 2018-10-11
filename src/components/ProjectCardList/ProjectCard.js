@@ -32,11 +32,12 @@ export { ProjectCard };
 const ProjectCardContainer = styled.div`
   height: 200px;
   overflow: scroll;
-  background: #565656;
-  color: #fff;
+  background: #dedede;
+  color: #dedede;
   padding: 0px;
-  border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
   position: relative;
   display: grid;
   grid-template-rows: auto 1fr 50px;
@@ -50,12 +51,13 @@ const ProjectCardContainer = styled.div`
   }
   p {
     padding: 10px;
+    color: #343434;
   }
 `;
 
 const ProjectCardHeader = styled.div`
   width: 100%;
-  background: #454545;
+  background: #343434;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 10px;
   margin: 0px;
@@ -63,7 +65,7 @@ const ProjectCardHeader = styled.div`
 
 const ControlButtonGroup = styled(ButtonGroup)`
   width: 100%;
-  background: #454545;
+  background: #343434;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
   * {
