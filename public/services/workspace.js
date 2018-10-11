@@ -75,7 +75,8 @@ class Workspace {
       .readdirSync(directory)
       .map(name => path.join(directory, name))
       .filter(this.isDirectory)
-      .filter(this.isNodeProject);
+      .filter(this.isNodeProject)
+      .sort();
     return projects;
   }
 

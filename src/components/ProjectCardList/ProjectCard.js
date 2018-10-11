@@ -1,47 +1,74 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  Button,
-  Card,
-  Elevation,
-  Popover,
-  Tooltip,
-  Position,
-  ButtonGroup,
-  Menu,
-  MenuItem
-} from '@blueprintjs/core';
+import { Button, Popover, Tooltip, Position, ButtonGroup, Menu, MenuItem } from '@blueprintjs/core';
 
 const ProjectCard = ({ project }) => {
   const { name, description, scripts } = project.package;
 
   return (
-    <ProjectCardContainer interactive={true} elevation={Elevation.TWO}>
-      <h1>{name}</h1>
+    <ProjectCardContainer>
+      <ProjectCardHeader>
+        <h1>{name}</h1>
+      </ProjectCardHeader>
       <p>{description}</p>
 
       {/* Control Buttons */}
-      <>
-        <ButtonGroup fill>
-          <FunctionButton fill label="Open in Editor" icon="code" />
-          <FunctionButton label="Open in Terminal" icon="console" />
-          <FunctionButton label="Open in Finder" icon="folder-shared-open" />
-          <Popover content={<ScriptsMenu scripts={scripts} />} position={Position.BOTTOM}>
-            <Button minimal disabled={!scripts} icon="function" rightIcon="caret-down">
-              Scripts
-            </Button>
-          </Popover>
-        </ButtonGroup>
-      </>
+      <ControlButtonGroup fill>
+        <FunctionButton fill label="Open in Editor" icon="code" />
+        <FunctionButton label="Open in Terminal!" icon="console" />
+        <FunctionButton label="Open in Finder" icon="folder-shared-open" />
+        <Popover content={<ScriptsMenu scripts={scripts} />} position={Position.BOTTOM}>
+          <Button minimal disabled={!scripts} icon="function" rightIcon="caret-down">
+            Scripts
+          </Button>
+        </Popover>
+      </ControlButtonGroup>
     </ProjectCardContainer>
   );
 };
 
 export { ProjectCard };
 
-const ProjectCardContainer = styled(Card)`
+const ProjectCardContainer = styled.div`
   height: 200px;
   overflow: scroll;
+  background: #565656;
+  color: #fff;
+  padding: 0px;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr 50px;
+  h1 {
+    user-select: none;
+    font-weight: normal;
+    padding: 0px;
+    margin: 0px;
+    font-size: 1.8em;
+    text-align: center;
+  }
+  p {
+    padding: 10px;
+  }
+`;
+
+const ProjectCardHeader = styled.div`
+  width: 100%;
+  background: #454545;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 10px;
+  margin: 0px;
+`;
+
+const ControlButtonGroup = styled(ButtonGroup)`
+  width: 100%;
+  background: #454545;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  * {
+    margin: auto auto;
+  }
 `;
 
 const FunctionButton = ({
