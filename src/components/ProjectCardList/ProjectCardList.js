@@ -13,7 +13,8 @@ const ProjectCardList = ({ projects = [], loading = false }) => {
   }
   return (
     <CardContainer>
-      {projects && projects.map(project => <ProjectCard project={project} />)}
+      {projects &&
+        projects.map((project, i) => <ProjectCard name={`project-card-${i}`} project={project} />)}
     </CardContainer>
   );
 };

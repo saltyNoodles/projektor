@@ -26,8 +26,8 @@ const ProjectCard = ({ project }) => {
           <FunctionButton fill label="Open in Editor" icon="code" />
           <FunctionButton label="Open in Terminal" icon="console" />
           <FunctionButton label="Open in Finder" icon="folder-shared-open" />
-          <Popover content={<ScriptsMenu scripts={scripts} />}>
-            <Button disabled={!scripts} icon="function" rightIcon="caret-down">
+          <Popover content={<ScriptsMenu scripts={scripts} />} position={Position.BOTTOM}>
+            <Button minimal disabled={!scripts} icon="function" rightIcon="caret-down">
               Scripts
             </Button>
           </Popover>
@@ -44,17 +44,6 @@ const ProjectCardContainer = styled(Card)`
   overflow: scroll;
 `;
 
-// const ButtonsContainer = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-//   width: 100%;
-//   background: #00000034;
-//   padding: 5px;
-//   border-radius: 6px;
-//   justify-content: space-between;
-//   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.24);
-// `;
-
 const FunctionButton = ({
   label = '',
   showLabel = false,
@@ -63,7 +52,7 @@ const FunctionButton = ({
   ...props
 }) => (
   <Tooltip content={tooltip || label} position={tooltipPosition}>
-    <Button aria-label={label} {...props}>
+    <Button minimal aria-label={label} {...props}>
       {showLabel ? label : ''}
     </Button>
   </Tooltip>
@@ -71,11 +60,14 @@ const FunctionButton = ({
 
 const ScriptsMenu = ({ scripts = {} }) => {
   return (
-    <Menu>
-      {Object.keys(scripts).map(name => (
-        <Tooltip content={scripts[name]} position={Position.RIGHT}>
-          <MenuItem text={name} />
-        </Tooltip>
+    <Menu vertical>
+      {Object.keys(scripts).map((name, i) => (
+        <MenuItem
+          key={`scripts-menu-item-${i}-${name}`}
+          rightIcon="caret-down"
+          style={{ display: 'block' }}
+          text={name}
+        />
       ))}
     </Menu>
   );
